@@ -26,3 +26,5 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 Route::get('/drawings', [App\Http\Controllers\DrawingsController::class, 'show'])->name('drawings');
 
 Route::get('/drawing', [App\Http\Controllers\DrawingController::class, 'show'])->name('drawing');
+
+Route::get('/index', [App\Http\Controllers\IndexController::class, 'show'])->name('index');
