@@ -1,6 +1,6 @@
 @extends('layouts.app')
 @section('content')
-    <a href="/{{ route('drawing.create') }}">Create a new drawing</a>
+    <a href="{{ route('drawing.create') }}">Create a new drawing</a>
 
     <table class="table">
         <tr>
