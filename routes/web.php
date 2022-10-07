@@ -24,7 +24,9 @@ Auth::routes();
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 Route::get('/drawings', [App\Http\Controllers\DrawingsController::class, 'show'])->name('drawings');
-
-Route::get('/drawing/{id}', [App\Http\Controllers\DrawingController::class, 'show'])->name('drawing');
+//
+//Route::get('/drawing/{id}', [App\Http\Controllers\DrawingController::class, 'show'])->name('drawing');
 
 Route::get('/index', [App\Http\Controllers\IndexController::class, 'show'])->name('index');
+
+Route::resource('drawing', App\Http\Controllers\DrawingController::class);
