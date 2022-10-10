@@ -10,4 +10,6 @@
         <input type="text" id="details" name="details"><br><br>
         <input type="submit" value="Submit">
     </form>
+
+    <br><a href="/index">Go back</a>
 @endsection

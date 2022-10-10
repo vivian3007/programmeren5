@@ -13,17 +13,23 @@
             <th>Edit</th>
             <th>Delete</th>
         </tr>
-        <tr>
             @foreach($drawings as $drawing)
-                <td>{{ $drawing->id }}</td>
-                <td>{{ $drawing->name }}</td>
-                <td>{{ $drawing->materials }}</td>
-                <td>{{ $drawing->details }}</td>
-                <td>{{ $drawing->image }}</td>
-                <td><a href="drawing/{{ $drawing->id }}">Details</a></td>
-                <td><a href="drawing.blade.php">Edit</a></td>
-                <td><a href="drawing.blade.php">Delete</a></td>
+                <tr>
+                    <td>{{ $drawing->id }}</td>
+                    <td>{{ $drawing->name }}</td>
+                    <td>{{ $drawing->materials }}</td>
+                    <td>{{ $drawing->details }}</td>
+                    <td>{{ $drawing->image }}</td>
+                    <td><a href="{{ route('drawing.show', $drawing->id) }}">Details</a></td>
+                    <td><a href="{{ route('drawing.edit', $drawing->id) }}">Edit</a></td>
+                    <td>
+                        <form action="/drawing/{{ $drawing->id }}" method="POST">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit">Delete</button>
+                        </form>
+                    </td>
+                </tr>
             @endforeach
-        </tr>
     </table>
 @endsection

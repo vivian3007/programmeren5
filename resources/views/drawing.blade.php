@@ -1,6 +1,5 @@
 @extends('layouts.app')
 @section('content')
-    <a href="/drawings">Drawing</a>
 
     @foreach($details as $detail)
         <td>{{ $detail->id }}</td>
@@ -9,4 +8,7 @@
         <td>{{ $detail->details }}</td>
         <td>{{ $detail->image }}</td>
     @endforeach
+
+    <br><a href="/index">Go back</a>
+
 @endsection
