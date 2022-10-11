@@ -5,16 +5,18 @@
         @csrf
         @method('PUT')
         @foreach($details as $detail)
-        <label for="name">Title:</label>
-        <input type="text" id="name" name="name" value="{{ $detail->name }}"><br><br>
-        <label for="materials">Materials:</label>
-        <input type="text" id="materials" name="materials" value="{{ $detail->materials }}"><br><br>
-        <label for="details">Details:</label>
-        <input type="text" id="details" name="details" value="{{ $detail->details }}"><br><br>
-        <input type="submit" value="Edit">
+            <label for="name">Title*</label><br>
+            <input type="text" id="name" name="name" value="{{ $detail->name }}"><br>
+            <span style="color:red">@error('name'){{ $message }} @enderror</span><br>
+            <label for="materials">Materials*</label><br>
+            <input type="text" id="materials" name="materials" value="{{ $detail->materials }}"><br>
+            <span style="color:red">@error('materials'){{ $message }} @enderror</span><br>
+            <label for="details">Details*</label><br>
+            <input type="text" id="details" name="details" value="{{ $detail->details }}"><br><br>
+            <input type="submit" class="btn btn-outline-dark" value="Edit">
         @endforeach
     </form>
 
-    <br><a href="/index">Go back</a>
+    <br><a href="{{ route('drawing.index') }}" class="btn btn-outline-dark">Go back</a>
 
 @endsection
