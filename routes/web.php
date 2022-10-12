@@ -21,7 +21,9 @@ use Illuminate\Support\Facades\Route;
 
 Auth::routes();
 
-Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/', [App\Http\Controllers\HomeController::class, 'home'])->name('home');
+
+Route::get('/drawings', [App\Http\Controllers\HomeController::class, 'drawings'])->name('drawings');
 //
 //Route::get('/drawings', [App\Http\Controllers\DrawingsController::class, 'show'])->name('drawings');
 //
@@ -31,6 +33,8 @@ Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('ho
 //
 //Route::get('/account', [\App\Http\Controllers\UserController::class, 'show'])->name('account');
 
-Route::resource('user', App\Http\Controllers\UserController::class);
+Route::resource('user', App\Http\Controllers\UserController::class)->middleware('auth');
 
-Route::resource('drawing', App\Http\Controllers\DrawingController::class);
+Route::resource('admin', [])->middleware('admin');
+
+Route::resource('drawing', App\Http\Controllers\DrawingController::class)->middleware('auth');

@@ -2,6 +2,8 @@
 @section('content')
 
     @foreach($details as $detail)
+        <h2>Details - {{$detail->name}}</h2>
+
         <ul>
             <li>{{ $detail->id }}</li>
             <li>{{ $detail->name }}</li>

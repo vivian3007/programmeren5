@@ -8,9 +8,9 @@
             <th>Materials</th>
             <th>Details</th>
             <th>Image</th>
-            <th>Details</th>
-            <th>Edit</th>
-            <th>Delete</th>
+            <th></th>
+            <th></th>
+            <th></th>
         </tr>
             @foreach($drawings as $drawing)
                 <tr>
@@ -22,7 +22,7 @@
                     <td><a href="{{ route('drawing.show', $drawing->id) }}" class="btn btn-outline-dark">Details</a></td>
                     <td><a href="{{ route('drawing.edit', $drawing->id) }}" class="btn btn-outline-dark">Edit</a></td>
                     <td>
-                        <form action="/drawing/{{ $drawing->id }}" method="POST">
+                        <form action="{{route('drawing.destroy', $drawing->id)}}" method="POST">
                             @csrf
                             @method('DELETE')
                             <button type="submit" class="btn btn-outline-dark">Delete</button>
@@ -31,5 +31,4 @@
                 </tr>
             @endforeach
     </table>
-    <a href="{{ route('drawing.create') }}" class="btn btn-outline-dark">Create a new drawing</a>
 @endsection
