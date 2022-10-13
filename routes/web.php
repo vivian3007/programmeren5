@@ -35,6 +35,4 @@ Route::get('/drawings', [App\Http\Controllers\HomeController::class, 'drawings']
 
 Route::resource('user', App\Http\Controllers\UserController::class)->middleware('auth');
 
-Route::resource('admin', [])->middleware('admin');
-
 Route::resource('drawing', App\Http\Controllers\DrawingController::class)->middleware('auth');

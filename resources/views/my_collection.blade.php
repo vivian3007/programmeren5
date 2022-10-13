@@ -19,15 +19,16 @@
                     <td>{{ $drawing->materials }}</td>
                     <td>{{ $drawing->details }}</td>
                     <td>{{ $drawing->image }}</td>
-                    <td><a href="{{ route('drawing.show', $drawing->id) }}" class="btn btn-outline-dark">Details</a></td>
-                    <td><a href="{{ route('drawing.edit', $drawing->id) }}" class="btn btn-outline-dark">Edit</a></td>
-                    <td>
-                        <form action="{{route('drawing.destroy', $drawing->id)}}" method="POST">
-                            @csrf
-                            @method('DELETE')
-                            <button type="submit" class="btn btn-outline-dark">Delete</button>
-                        </form>
-                    </td>
+
+                        <td><a href="{{ route('drawing.show', $drawing->id) }}" class="btn btn-outline-dark">Details</a></td>
+                        <td><a href="{{ route('drawing.edit', $drawing->id) }}" class="btn btn-outline-dark">Edit</a></td>
+                        <td>
+                            <form action="{{route('drawing.destroy', $drawing->id)}}" method="POST">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="btn btn-outline-dark">Delete</button>
+                            </form>
+                        </td>
                 </tr>
             @endforeach
     </table>

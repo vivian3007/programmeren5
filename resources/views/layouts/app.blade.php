@@ -26,9 +26,6 @@
                 <a class="navbar-brand" href="{{route('drawings')}}">
                     Drawings
                 </a>
-                <a class="navbar-brand" href="{{ route('drawing.index') }}">
-                    My drawings
-                </a>
                 <a class="navbar-brand" href="{{ route('drawing.create') }}">
                     Create drawing
                 </a>
@@ -65,7 +62,10 @@
                                 </a>
 
                                 <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="{{ route('user.show', '1') }}">
+                                    <a class="dropdown-item" href="{{ route('user.index', Auth::user()->id) }}">
+                                        My collection
+                                    </a>
+                                    <a class="dropdown-item" href="{{ route('user.show', Auth::user()->id) }}">
                                         Account
                                     </a>
                                     <a class="dropdown-item" href="{{ route('logout') }}"

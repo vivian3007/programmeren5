@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Drawing;
+use Illuminate\Support\Facades\Auth;
 
 class DrawingController extends Controller
 {
@@ -12,46 +13,34 @@ class DrawingController extends Controller
         $this->middleware('auth');
     }
 
-    public function index(){
-        $drawings = Drawing::all();
-
-        return view('index', [
-            'drawings' => $drawings
-        ]);
-    }
-
     public function show($id){
-        $details = Drawing::all()
-        ->where('id', '=', $id);
+        $details = Drawing::find($id);
 
-        return view('drawing.details', compact('id'), [
-            'details' => $details
-        ]);
+        return view('drawing.details', compact('id', 'details'));
     }
 
     public function create(){
         return view('drawing.create');
     }
 
-    public function store(){
-        $attributes = request()->validate([
+    public function store(Request $request){
+        $attributes = $request->validate([
             'name' => 'required',
             'materials' => 'required',
 //            'image' => 'required'
         ]);
 
+        $attributes['user_id'] = Auth::user()->id;
+
         Drawing::create($attributes);
 
-        return redirect(route('drawing.index'));
+        return redirect(route('user.index'));
     }
 
     public function edit($id){
-        $details = Drawing::all()
-            ->where('id', '=', $id);
+        $details = Drawing::find($id);
 
-        return view('drawing.edit', compact('id'), [
-            'details' => $details
-        ]);
+        return view('drawing.edit', compact('id', 'details'));
     }
 
     public function update(Drawing $drawing){
@@ -70,7 +59,7 @@ class DrawingController extends Controller
     public function destroy(Drawing $drawing) {
         $drawing->delete();
 
-        return redirect(route('drawing.index'));
+        return redirect(route('user.index'));
     }
 }
 

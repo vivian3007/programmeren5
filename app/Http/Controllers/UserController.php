@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Drawing;
 use Illuminate\Http\Request;
 use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller
 {
@@ -12,32 +14,38 @@ class UserController extends Controller
         $this->middleware('auth');
     }
 
-    public function show($id){
-        $user = User::all()
-            ->where('id', '=', $id);
+    public function index(){
+        $drawings = Auth::user()->drawings;
+        return view('my_collection', compact('drawings'));
+    }
 
-        return view('user.details', [
-            'users' => $user
-        ]);
+    public function show($id){
+        $user = User::find($id);
+
+        $loggedInUser = Auth::user()->id;
+
+        if($user->id === $loggedInUser){
+            return view('user.details', compact('user'));
+        } else{
+            return redirect(route('drawing.index'));
+        }
+
     }
 
     public function edit($id){
-        $details = User::all()
-            ->where('id', '=', $id);
+        $user = User::find($id);
 
-        return view('user.edit', compact('id'), [
-            'details' => $details
-        ]);
+        return view('user.edit', compact('id', 'user'));
     }
 
-    public function update(User $user){
-        $attributes = request()->validate([
-            'name' => '',
-            'email' => ''
-//            'password' => ['required', 'string', 'min:8', 'confirmed'],
+    public function update(Request $request, $id){
+        $request->validate([
+            'name' => 'required',
+            'email' => 'required',
         ]);
 
-        $user->update($attributes);
+        $user = User::find($id);
+        $user->update($request->all());
 
         return redirect(route('user.show', $user->id));
     }
