@@ -27,5 +27,5 @@
         </div>
     </form>
 
-    <br><a href="{{ route('drawing.index') }}" class="btn btn-outline-dark">Go back</a>
+    <br><a href="{{ route('user.index') }}" class="btn btn-outline-dark">Go back</a>
 @endsection

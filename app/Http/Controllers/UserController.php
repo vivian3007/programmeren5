@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Category;
 use App\Models\Drawing;
 use Illuminate\Http\Request;
 use App\Models\User;
@@ -16,20 +17,14 @@ class UserController extends Controller
 
     public function index(){
         $drawings = Auth::user()->drawings;
+
         return view('my_collection', compact('drawings'));
     }
 
-    public function show($id){
-        $user = User::find($id);
+    public function show(){
+        $user = Auth::user();
 
-        $loggedInUser = Auth::user()->id;
-
-        if($user->id === $loggedInUser){
-            return view('user.details', compact('user'));
-        } else{
-            return redirect(route('drawing.index'));
-        }
-
+        return view('user.details', compact('user'));
     }
 
     public function edit($id){

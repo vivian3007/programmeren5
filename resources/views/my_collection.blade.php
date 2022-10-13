@@ -1,3 +1,9 @@
+@php
+    /**
+     * @var \App\Models\Drawing[] $drawings
+     */
+@endphp
+
 @extends('layouts.app')
 @section('content')
 
@@ -6,6 +12,7 @@
             <th>Id</th>
             <th>Name</th>
             <th>Materials</th>
+            <th>Category</th>
             <th>Details</th>
             <th>Image</th>
             <th></th>
@@ -17,6 +24,7 @@
                     <td>{{ $drawing->id }}</td>
                     <td>{{ $drawing->name }}</td>
                     <td>{{ $drawing->materials }}</td>
+                    <td>{{ $drawing->category->name }}</td>
                     <td>{{ $drawing->details }}</td>
                     <td>{{ $drawing->image }}</td>
 

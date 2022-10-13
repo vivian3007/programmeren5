@@ -9,6 +9,6 @@
             <li>{{ $details->details }}</li>
             <li>{{ $details->image }}</li>
         </ul>
-    <br><a href="{{ route('drawing.index') }}" class="btn btn-outline-dark">Go back</a>
+    <br><a href="{{ route('user.index') }}" class="btn btn-outline-dark">Go back</a>
 
 @endsection
