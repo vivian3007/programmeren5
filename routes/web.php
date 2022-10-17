@@ -24,7 +24,7 @@ Auth::routes();
 Route::get('/', [App\Http\Controllers\HomeController::class, 'home'])->name('home');
 
 Route::get('/drawings', [App\Http\Controllers\HomeController::class, 'drawings'])->name('drawings');
-//
+
 //Route::get('/drawings', [App\Http\Controllers\DrawingsController::class, 'show'])->name('drawings');
 //
 //Route::get('/drawing/{id}', [App\Http\Controllers\DrawingController::class, 'show'])->name('drawing');
@@ -36,3 +36,5 @@ Route::get('/drawings', [App\Http\Controllers\HomeController::class, 'drawings']
 Route::resource('user', App\Http\Controllers\UserController::class)->middleware('auth');
 
 Route::resource('drawing', App\Http\Controllers\DrawingController::class)->middleware('auth');
+
+Route::post('drawing/search', [App\Http\Controllers\DrawingController::class, 'search'])->name('drawing.search');

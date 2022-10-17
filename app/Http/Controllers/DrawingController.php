@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Category;
 use Illuminate\Http\Request;
 use App\Models\Drawing;
 use Illuminate\Support\Facades\Auth;
@@ -60,6 +61,17 @@ class DrawingController extends Controller
         $drawing->delete();
 
         return redirect(route('user.index'));
+    }
+
+    public function search(Request $request){
+
+        $drawings = Drawing::where('name', 'like', '%' . $request->item . '%')
+            ->orWhere('materials', 'like', '%' . $request->item . '%')
+            ->orWhere('details', 'like', '%' . $request->item . '%')
+//            ->orWhere('image', 'like', '%' . $searchedWord . '%')
+            ->get();
+
+        return view('drawings', compact('drawings'));
     }
 }
 
