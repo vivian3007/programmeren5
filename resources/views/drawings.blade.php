@@ -10,7 +10,13 @@
         </div>
     </form>
 
-
+    <h3>Filter on tags</h3>
+    @foreach($categories as $category)
+        <div>
+            <a href="{{route('drawing.index', ['category' => $category->id])}}" type="button"
+               class="btn btn-outline-dark">{{$category->name}}</a>
+        </div>
+    @endforeach
 
     <table class="table">
         <tr>

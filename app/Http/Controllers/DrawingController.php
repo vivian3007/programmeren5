@@ -14,6 +14,23 @@ class DrawingController extends Controller
         $this->middleware('auth');
     }
 
+    public function home()
+    {
+        return view('home');
+    }
+
+    public function index(Request $request){
+        if($request->has('category')) {
+            $drawings = Drawing::where('category_id', '=', $request->query('category'))->get();
+        } else{
+            $drawings = Drawing::all();
+        }
+
+        $categories = Category::all();
+
+        return view('drawings', compact('drawings', 'categories'));
+    }
+
     public function show($id){
         $details = Drawing::find($id);
 
@@ -64,15 +81,17 @@ class DrawingController extends Controller
     }
 
     public function search(Request $request){
-
         $drawings = Drawing::where('name', 'like', '%' . $request->item . '%')
             ->orWhere('materials', 'like', '%' . $request->item . '%')
             ->orWhere('details', 'like', '%' . $request->item . '%')
 //            ->orWhere('image', 'like', '%' . $searchedWord . '%')
             ->get();
 
-        return view('drawings', compact('drawings'));
+        $categories = Category::all();
+
+        return view('drawings', compact('drawings', 'categories'));
     }
+
 }
 
 

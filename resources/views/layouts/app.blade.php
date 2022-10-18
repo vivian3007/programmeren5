@@ -23,7 +23,7 @@
                 <a class="navbar-brand" href="{{ url('/') }}">
                     Home
                 </a>
-                <a class="navbar-brand" href="{{route('drawings')}}">
+                <a class="navbar-brand" href="{{route('drawing.index')}}">
                     Drawings
                 </a>
                 <a class="navbar-brand" href="{{ route('drawing.create') }}">

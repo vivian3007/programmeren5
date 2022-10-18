@@ -20,10 +20,10 @@ use Illuminate\Support\Facades\Route;
 //Route::get('/home', [HomeController::class, 'show']);
 
 Auth::routes();
-
-Route::get('/', [App\Http\Controllers\HomeController::class, 'home'])->name('home');
-
-Route::get('/drawings', [App\Http\Controllers\HomeController::class, 'drawings'])->name('drawings');
+//
+//Route::get('/', [App\Http\Controllers\HomeController::class, 'home'])->name('home');
+//
+//Route::get('/drawings', [App\Http\Controllers\HomeController::class, 'drawings'])->name('drawings');
 
 //Route::get('/drawings', [App\Http\Controllers\DrawingsController::class, 'show'])->name('drawings');
 //
@@ -38,3 +38,7 @@ Route::resource('user', App\Http\Controllers\UserController::class)->middleware(
 Route::resource('drawing', App\Http\Controllers\DrawingController::class)->middleware('auth');
 
 Route::post('drawing/search', [App\Http\Controllers\DrawingController::class, 'search'])->name('drawing.search');
+Route::post('drawing/filter', [App\Http\Controllers\DrawingController::class, 'filter'])->name('drawing.filter');
+Route::get('/', [App\Http\Controllers\DrawingController::class, 'home'])->name('drawing.home');
+
+
