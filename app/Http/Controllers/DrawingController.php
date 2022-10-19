@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Category;
+use App\Models\User;
 use Illuminate\Http\Request;
 use App\Models\Drawing;
 use Illuminate\Support\Facades\Auth;
@@ -32,27 +33,50 @@ class DrawingController extends Controller
     }
 
     public function show($id){
+        $this->counter();
         $details = Drawing::find($id);
 
         return view('drawing.details', compact('id', 'details'));
     }
 
     public function create(){
-        return view('drawing.create');
+        if(Auth::user()->counter >= 4){
+            $categories = Category::all();
+
+            return view('drawing.create', compact('categories'));
+        } else{
+            $drawings = Auth::user()->drawings;
+
+            return view('my_collection', compact('drawings'));
+        }
+
     }
 
     public function store(Request $request){
         $attributes = $request->validate([
             'name' => 'required',
             'materials' => 'required',
+            'category' => 'required'
 //            'image' => 'required'
         ]);
 
         $attributes['user_id'] = Auth::user()->id;
+        $attributes['category_id'] = $request->input('category');
 
         Drawing::create($attributes);
 
-        return redirect(route('user.index'));
+        $categories = Category::all();
+
+        return redirect(route('user.index', compact('categories')));
+    }
+
+    public function counter(){
+        $user_id = Auth::id();
+        $user = User::find($user_id);
+        $count = $user->counter;
+        $newCount = $count + 1;
+        $user->counter = $newCount;
+        $user->save();
     }
 
     public function edit($id){

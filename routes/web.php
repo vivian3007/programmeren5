@@ -39,6 +39,7 @@ Route::resource('drawing', App\Http\Controllers\DrawingController::class)->middl
 
 Route::post('drawing/search', [App\Http\Controllers\DrawingController::class, 'search'])->name('drawing.search');
 Route::post('drawing/filter', [App\Http\Controllers\DrawingController::class, 'filter'])->name('drawing.filter');
+Route::post('drawing/counter', [App\Http\Controllers\DrawingController::class, 'counter'])->name('drawing/counter');
 Route::get('/', [App\Http\Controllers\DrawingController::class, 'home'])->name('drawing.home');
 
 

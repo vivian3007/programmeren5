@@ -1,21 +1,16 @@
 @extends('layouts.app')
 @section('content')
 
-    <h3>Search:</h3>
     <form method="post" action="{{route('drawing.search')}}">
         @csrf
         <div>
             <input name="item" type="text" placeholder="Search">
-            <input name="submit" type="submit" class="btn btn-outline-dark">
+            <input name="submit" type="submit" class="btn btn-outline-dark" value="Search">
         </div>
     </form>
 
-    <h3>Filter on tags</h3>
     @foreach($categories as $category)
-        <div>
-            <a href="{{route('drawing.index', ['category' => $category->id])}}" type="button"
-               class="btn btn-outline-dark">{{$category->name}}</a>
-        </div>
+            <a href="{{route('drawing.index', ['category' => $category->id])}}" type="button" class="btn btn-outline-dark">{{$category->name}}</a>
     @endforeach
 
     <table class="table">
