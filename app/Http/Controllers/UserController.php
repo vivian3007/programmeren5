@@ -21,27 +21,37 @@ class UserController extends Controller
         return view('my_collection', compact('drawings'));
     }
 
-    public function show(){
-        $user = Auth::user();
-
-        return view('user.details', compact('user'));
+    public function show($id){
+        if($id == Auth::user()->id){
+            $user = User::find($id);
+            return view('user.details', compact('user'));
+        } else{
+            return redirect(route('user.show', Auth::user()->id));
+        }
     }
 
     public function edit($id){
-        $user = User::find($id);
-
-        return view('user.edit', compact('id', 'user'));
+        if($id == Auth::user()->id){
+            $user = User::find($id);
+            return view('user.edit', compact('user'));
+        } else{
+            return redirect(route('user.show', Auth::user()->id));
+        }
     }
 
     public function update(Request $request, $id){
-        $request->validate([
-            'name' => 'required',
-            'email' => 'required',
-        ]);
+        if($id == Auth::user()->id){
+            $request->validate([
+                'name' => 'required',
+                'email' => 'required',
+            ]);
 
-        $user = User::find($id);
-        $user->update($request->all());
+            $user = User::find($id);
+            $user->update($request->all());
 
-        return redirect(route('user.show', $user->id));
+            return redirect(route('user.show', $user->id));
+            } else {
+                abort(403);
+            }
     }
 }

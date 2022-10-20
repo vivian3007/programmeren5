@@ -22,9 +22,10 @@ class DrawingController extends Controller
 
     public function index(Request $request){
         if($request->has('category')) {
-            $drawings = Drawing::where('category_id', '=', $request->query('category'))->get();
+            $drawings = Drawing::where('category_id', '=', $request->query('category'))
+                ->where('active', '=', '1')->get();
         } else{
-            $drawings = Drawing::all();
+            $drawings = Drawing::where('active', '=', '1')->get();
         }
 
         $categories = Category::all();
@@ -116,6 +117,24 @@ class DrawingController extends Controller
         return view('drawings', compact('drawings', 'categories'));
     }
 
+    public function active(Drawing $drawing){
+        $current = $drawing->active;
+        if($current){
+            $new = false;
+        } else{
+            $new = true;
+        }
+
+        $drawing->active = $new;
+        $drawing->save();
+
+        return redirect(route('user.index'));
+    }
+
+//    public function createCategory()
+//    {
+//            return view('category.create');
+//    }
 }
 
 

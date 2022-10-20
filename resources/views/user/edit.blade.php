@@ -19,6 +19,6 @@
             </div>
     </form>
 
-    <br><a href="{{ route('user.show', $id) }}" class="btn btn-outline-dark">Go back</a>
+    <br><a href="{{ route('user.show', $user->id) }}" class="btn btn-outline-dark">Go back</a>
 
 @endsection

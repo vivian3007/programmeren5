@@ -1,6 +1,8 @@
 <?php
 
+use App\Http\Controllers\DrawingController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\UserController;
 use App\Http\Controllers\WelcomeController;
 use Illuminate\Support\Facades\Route;
 
@@ -33,13 +35,14 @@ Auth::routes();
 //
 //Route::get('/account', [\App\Http\Controllers\UserController::class, 'show'])->name('account');
 
-Route::resource('user', App\Http\Controllers\UserController::class)->middleware('auth');
+Route::resource('user', UserController::class)->middleware('auth');
 
-Route::resource('drawing', App\Http\Controllers\DrawingController::class)->middleware('auth');
+Route::resource('drawing', DrawingController::class)->middleware('auth');
 
-Route::post('drawing/search', [App\Http\Controllers\DrawingController::class, 'search'])->name('drawing.search');
-Route::post('drawing/filter', [App\Http\Controllers\DrawingController::class, 'filter'])->name('drawing.filter');
-Route::post('drawing/counter', [App\Http\Controllers\DrawingController::class, 'counter'])->name('drawing/counter');
-Route::get('/', [App\Http\Controllers\DrawingController::class, 'home'])->name('drawing.home');
+Route::post('drawing/search', [DrawingController::class, 'search'])->name('drawing.search');
+Route::post('drawing/filter', [DrawingController::class, 'filter'])->name('drawing.filter');
+Route::post('drawing/counter', [DrawingController::class, 'counter'])->name('drawing.counter');
+Route::post('drawing/{drawing}/active', [DrawingController::class, 'active'])->name('drawing.active');
+Route::get('/', [DrawingController::class, 'home'])->name('drawing.home');
 
 
