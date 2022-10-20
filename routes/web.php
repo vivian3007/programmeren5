@@ -43,6 +43,8 @@ Route::post('drawing/search', [DrawingController::class, 'search'])->name('drawi
 Route::post('drawing/filter', [DrawingController::class, 'filter'])->name('drawing.filter');
 Route::post('drawing/counter', [DrawingController::class, 'counter'])->name('drawing.counter');
 Route::post('drawing/{drawing}/active', [DrawingController::class, 'active'])->name('drawing.active');
+Route::get('drawing/{drawing}/createCategory', [DrawingController::class, 'createCategory'])->name('drawing.createCategory');
+Route::post('drawing/storeCategory', [DrawingController::class, 'storeCategory'])->name('drawing.storeCategory');
 Route::get('/', [DrawingController::class, 'home'])->name('drawing.home');
 
 

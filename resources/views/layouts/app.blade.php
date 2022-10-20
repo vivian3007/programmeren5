@@ -65,6 +65,11 @@
                                     <a class="dropdown-item" href="{{ route('user.index', Auth::user()->id) }}">
                                         My collection
                                     </a>
+                                    @if(Auth::user()->is_admin)
+                                        <a class="dropdown-item" href="{{ route('drawing.createCategory', Auth::user()->id) }}">
+                                            New category
+                                        </a>
+                                    @endif
                                     <a class="dropdown-item" href="{{ route('user.show', Auth::user()->id) }}">
                                         Account
                                     </a>

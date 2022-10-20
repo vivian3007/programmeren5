@@ -109,7 +109,6 @@ class DrawingController extends Controller
         $drawings = Drawing::where('name', 'like', '%' . $request->item . '%')
             ->orWhere('materials', 'like', '%' . $request->item . '%')
             ->orWhere('details', 'like', '%' . $request->item . '%')
-//            ->orWhere('image', 'like', '%' . $searchedWord . '%')
             ->get();
 
         $categories = Category::all();
@@ -131,10 +130,29 @@ class DrawingController extends Controller
         return redirect(route('user.index'));
     }
 
-//    public function createCategory()
-//    {
-//            return view('category.create');
-//    }
+    public function createCategory()
+    {
+        if(Auth::user()->is_admin){
+            return view('category.create');
+        } else{
+            return redirect(route('drawing.index'));
+        }
+    }
+
+    public function storeCategory(Request $request)
+    {
+        if(Auth::user()->is_admin){
+            $attributes = $request->validate([
+                'name' => 'required',
+            ]);
+
+            Category::create($attributes);
+
+            return redirect(route('user.index'));
+        } else{
+            abort(403);
+        }
+    }
 }
 
 
