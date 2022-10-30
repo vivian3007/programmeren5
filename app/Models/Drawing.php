@@ -12,7 +12,14 @@ class Drawing extends Model
 
     protected $table = 'drawings';
 
-    protected $fillable = ['name', 'materials', 'details', 'image', 'user_id', 'category_id'];
+    protected $fillable = [
+        'name',
+        'materials',
+        'details',
+        'image',
+        'user_id',
+        'category_id'
+    ];
 
     public function user(): BelongsTo
     {

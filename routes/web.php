@@ -1,9 +1,7 @@
 <?php
 
 use App\Http\Controllers\DrawingController;
-use App\Http\Controllers\HomeController;
 use App\Http\Controllers\UserController;
-use App\Http\Controllers\WelcomeController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -17,23 +15,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-//Route::get('/', [WelcomeController::class, 'show']);
-
-//Route::get('/home', [HomeController::class, 'show']);
-
 Auth::routes();
-//
-//Route::get('/', [App\Http\Controllers\HomeController::class, 'home'])->name('home');
-//
-//Route::get('/drawings', [App\Http\Controllers\HomeController::class, 'drawings'])->name('drawings');
-
-//Route::get('/drawings', [App\Http\Controllers\DrawingsController::class, 'show'])->name('drawings');
-//
-//Route::get('/drawing/{id}', [App\Http\Controllers\DrawingController::class, 'show'])->name('drawing');
-//
-//Route::get('/index', [App\Http\Controllers\IndexController::class, 'show'])->name('index');
-//
-//Route::get('/account', [\App\Http\Controllers\UserController::class, 'show'])->name('account');
 
 Route::resource('user', UserController::class)->middleware('auth');
 

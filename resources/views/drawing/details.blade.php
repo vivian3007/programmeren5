@@ -1,14 +1,24 @@
 @extends('layouts.app')
 @section('content')
-        <h2>Details - {{$details->name}}</h2>
+        <h2>Details - {{$drawing->name}}</h2>
 
-        <ul>
-            <li>{{ $details->id }}</li>
-            <li>{{ $details->name }}</li>
-            <li>{{ $details->materials }}</li>
-            <li>{{ $details->details }}</li>
-            <li>{{ $details->image }}</li>
-        </ul>
-    <br><a href="{{ route('user.index') }}" class="btn btn-outline-dark">Go back to my collection</a>
+        <table class="table">
+            <tr>
+                <th></th>
+                <th>Name</th>
+                <th>Materials</th>
+                <th>Category</th>
+                <th>Description</th>
+            </tr>
+            <tr>
+                <td><img src="{{ asset("images/$drawing->image") }}" alt="mermaid" style="height:100px;"></td>
+                <td>{{ $drawing->name }}</td>
+                <td>{{ $drawing->materials }}</td>
+                <td>{{ $drawing->category->name }}</td>
+                <td>{{ $drawing->details }}</td>
+            </tr>
+        </table>
 
+        <br><a href="{{ route('user.index') }}" class="btn btn-outline-dark">Go to my collection</a><br>
+        <br><a href="{{ route('drawing.index') }}" class="btn btn-outline-dark">Go to the drawings overview</a>
 @endsection

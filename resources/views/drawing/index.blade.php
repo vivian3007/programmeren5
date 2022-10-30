@@ -1,6 +1,8 @@
 @extends('layouts.app')
 @section('content')
 
+    <h2>List of drawings</h2>
+
     <form method="post" action="{{route('drawing.search')}}">
         @csrf
         <div>
@@ -9,29 +11,27 @@
         </div>
     </form>
 
-    <h3>Filters</h3>
+    <h4>Filters</h4>
     @foreach($categories as $category)
         <a href="{{route('drawing.index', ['category' => $category->id])}}" type="button" class="btn btn-outline-dark">{{$category->name}}</a>
     @endforeach
 
     <table class="table">
         <tr>
-            <th>Id</th>
+            <th></th>
             <th>Name</th>
             <th>Materials</th>
             <th>Category</th>
-            <th>Details</th>
-            <th>Image</th>
+            <th>Description</th>
             <th></th>
         </tr>
         @foreach($drawings as $drawing)
             <tr>
-                <td>{{ $drawing->id }}</td>
+                <td><img src="{{ asset("images/$drawing->image") }}" alt="mermaid" style="height:100px;"></td>
                 <td>{{ $drawing->name }}</td>
                 <td>{{ $drawing->materials }}</td>
                 <td>{{ $drawing->category->name }}</td>
                 <td>{{ $drawing->details }}</td>
-                <td>{{ $drawing->image }}</td>
                 <td><a href="{{ route('drawing.show', $drawing->id) }}" class="btn btn-outline-dark">Details</a></td>
             </tr>
         @endforeach

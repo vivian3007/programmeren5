@@ -7,14 +7,15 @@
 @extends('layouts.app')
 @section('content')
 
+    <h2>My collection</h2>
+
     <table class="table">
         <tr>
-            <th>Id</th>
+            <th></th>
             <th>Name</th>
             <th>Materials</th>
             <th>Category</th>
-            <th>Details</th>
-            <th>Image</th>
+            <th>Description</th>
             <th></th>
             <th></th>
             <th></th>
@@ -22,12 +23,11 @@
         </tr>
             @foreach($drawings as $drawing)
                 <tr>
-                    <td>{{ $drawing->id }}</td>
+                    <td><img src="{{ asset("images/$drawing->image") }}" alt="mermaid" style="height:100px;"></td>
                     <td>{{ $drawing->name }}</td>
                     <td>{{ $drawing->materials }}</td>
                     <td>{{ $drawing->category->name }}</td>
                     <td>{{ $drawing->details }}</td>
-                    <td>{{ $drawing->image }}</td>
                     <td><a href="{{ route('drawing.show', $drawing->id) }}" class="btn btn-outline-dark">Details</a></td>
                     <td><a href="{{ route('drawing.edit', $drawing->id) }}" class="btn btn-outline-dark">Edit</a></td>
                     <td>

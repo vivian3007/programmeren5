@@ -30,25 +30,27 @@ class DrawingController extends Controller
 
         $categories = Category::all();
 
-        return view('drawings', compact('drawings', 'categories'));
+        return view('drawing.index', compact('drawings', 'categories'));
     }
 
     public function show($id){
         $this->counter();
-        $details = Drawing::find($id);
+        $drawing = Drawing::find($id);
 
-        return view('drawing.details', compact('id', 'details'));
+        return view('drawing.details', compact('id', 'drawing'));
     }
 
     public function create(){
-        if(Auth::user()->counter >= 4){
+        if(Auth::user()->counter >= 2){
             $categories = Category::all();
 
             return view('drawing.create', compact('categories'));
         } else{
-            $drawings = Auth::user()->drawings;
+            $drawings = Drawing::where('active', '=', '1')->get();
 
-            return view('my_collection', compact('drawings'));
+            $categories = Category::all();
+
+            return view('drawing.index', compact('drawings', 'categories'));
         }
 
     }
@@ -57,8 +59,9 @@ class DrawingController extends Controller
         $attributes = $request->validate([
             'name' => 'required',
             'materials' => 'required',
-            'category' => 'required'
-//            'image' => 'required'
+            'category' => 'required',
+            'image' => 'required',
+            'details' => ''
         ]);
 
         $attributes['user_id'] = Auth::user()->id;
@@ -81,18 +84,23 @@ class DrawingController extends Controller
     }
 
     public function edit($id){
-        $details = Drawing::find($id);
+        $drawing = Drawing::find($id);
 
-        return view('drawing.edit', compact('id', 'details'));
+        $categories = Category::all();
+
+        return view('drawing.edit', compact('id', 'drawing', 'categories'));
     }
 
-    public function update(Drawing $drawing){
-        $attributes = request()->validate([
+    public function update(Drawing $drawing, Request $request){
+        $attributes = $request->validate([
             'name' => 'required',
             'materials' => 'required',
-            'details' => ''
-//          'image' => 'required'
+            'category' => 'required',
+            'details' => '',
+            'image' => 'required'
         ]);
+
+        $attributes['category_id'] = $request->input('category');
 
         $drawing->update($attributes);
 
@@ -113,7 +121,7 @@ class DrawingController extends Controller
 
         $categories = Category::all();
 
-        return view('drawings', compact('drawings', 'categories'));
+        return view('drawing.index', compact('drawings', 'categories'));
     }
 
     public function active(Drawing $drawing){

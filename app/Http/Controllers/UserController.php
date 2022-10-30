@@ -18,7 +18,7 @@ class UserController extends Controller
     public function index(){
         $drawings = Auth::user()->drawings;
 
-        return view('my_collection', compact('drawings'));
+        return view('user.my_collection', compact('drawings'));
     }
 
     public function show($id){

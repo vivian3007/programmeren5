@@ -1,6 +1,8 @@
 @extends('layouts.app')
 @section('content')
 
+    <h2>Edit - {{ $user->name }}</h2>
+
     <form action="{{ route('user.update', $user->id) }}" method="POST">
         @csrf
         @method('PUT')

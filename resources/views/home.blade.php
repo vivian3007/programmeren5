@@ -8,21 +8,7 @@
         </div>
     @endif
 
-    <h1>Drawings!!!</h1>
-{{--<div class="container">--}}
-{{--    <div class="row justify-content-center">--}}
-{{--        <div class="col-md-8">--}}
-{{--            <div class="card">--}}
-{{--                <div class="card-header">{{ __('Dashboard') }}</div>--}}
-
-{{--                <div class="card-body">--}}
-{{--                    --}}
-
-{{--                    {{ __('You are logged in!') }}--}}
-
-{{--                </div>--}}
-{{--            </div>--}}
-{{--        </div>--}}
-{{--    </div>--}}
-{{--</div>--}}
+    <h1>Drawing collection</h1>
+    <p>This website is a collection of drawings. Feel free to add some!</p>
+    <img src="{{ asset("images/funland.jpg") }}" alt="mermaid" style="width:60%;">
 @endsection

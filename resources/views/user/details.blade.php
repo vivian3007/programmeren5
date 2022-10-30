@@ -1,9 +1,9 @@
 @extends('layouts.app')
 @section('content')
+    <h2>Account details - {{ $user->name }}</h2>
             <ul>
-                <li>{{ $user->id }}</li>
-                <li>{{ $user->name }}</li>
-                <li>{{ $user->email }}</li>
+                <li>Name: {{ $user->name }}</li>
+                <li>Email adress: {{ $user->email }}</li>
             </ul>
             <a href="{{ route('user.edit', $user->id) }}" class="btn btn-outline-dark">Edit</a>
 @endsection

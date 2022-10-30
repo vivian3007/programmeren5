@@ -1,5 +1,8 @@
 @extends('layouts.app')
 @section('content')
+
+    <h2>Create a new category</h2>
+
     <form action="{{ route('drawing.storeCategory') }}" method="POST">
         @csrf
         <div>
@@ -11,5 +14,4 @@
             <input type="submit" class="btn btn-outline-dark" value="Submit">
         </div>
     </form>
-    <br><a href="{{ route('user.index') }}" class="btn btn-outline-dark">Go back</a>
 @endsection
